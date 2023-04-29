@@ -63,6 +63,7 @@ bot.on(message('text'), async (ctx) => {
 		if (textArray[textArray.length - 1] === 'гпт') {
 			await ctx.reply(code('Сообщение принял. Жду ответ от сервера ...'))
 			ctx.message.text = ctx.message.text.replace("гпт", "")
+			ctx.message.text = ctx.message.text + ' , ответь на русском языке'
 			ctx.session.messages.push({ role: openai.roles.USER, content: ctx.message.text })
 			const response = await openai.chat(ctx.session.messages)
 			ctx.session.messages.push({ role: openai.roles.ASSISTANT, content: response.content })
